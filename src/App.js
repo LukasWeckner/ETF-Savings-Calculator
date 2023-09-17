@@ -7,17 +7,20 @@ function App() {
   const [anlagedauer, setAnlagedauer] = useState(0);
   const [rendite, setRendite] = useState(0);
 
+  const summeMonatlicheSparrate = sparrate * (anlagedauer * 12);
+  const summeInvestiertesKapital = startkapital + summeMonatlicheSparrate;
+
   function handleChangeStartkapital(event) {
-    setStartkapital(event.target.value);
+    setStartkapital(parseFloat(event.target.value));
   }
   function handleChangeSparrate(event) {
-    setSparrate(event.target.value);
+    setSparrate(parseFloat(event.target.value));
   }
   function handleChangeAnlagedauer(event) {
-    setAnlagedauer(event.target.value);
+    setAnlagedauer(parseFloat(event.target.value));
   }
   function handleChangeRendite(event) {
-    setRendite(event.target.value);
+    setRendite(parseFloat(event.target.value));
   }
 
   return (
@@ -58,6 +61,16 @@ function App() {
         <h3 className="Top-Margin">Platzhalter-Diagramm</h3>
       </section>
 
+      <section>
+        <h2>Deine Ergebnisee:</h2>
+        <ul>
+          <li>{`Startkapital: ${startkapital}€`}</li>
+          <li>{`Summe monatliche Sparrate: ${summeMonatlicheSparrate}€`}</li>
+          <li>{`Summe investiertes Kapital: ${summeInvestiertesKapital}€`}</li>
+          <li>Summe Rendite:</li>
+          <li>Gesamtkapital:</li>
+        </ul>
+      </section>
       <section>
         <img
           alt="Grafik der Kapitalentwicklung über die Jahre"
