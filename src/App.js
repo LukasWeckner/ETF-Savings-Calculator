@@ -7,8 +7,14 @@ function App() {
   const [anlagedauer, setAnlagedauer] = useState(0);
   const [rendite, setRendite] = useState(0);
 
+  const dezimalRendite = rendite / 100;
   const summeMonatlicheSparrate = sparrate * (anlagedauer * 12);
   const summeInvestiertesKapital = startkapital + summeMonatlicheSparrate;
+  const gesamtkapital =
+    startkapital * Math.pow(1 + dezimalRendite / 12, 12 * anlagedauer) +
+    sparrate *
+      ((Math.pow(1 + dezimalRendite / 12, 12 * anlagedauer) - 1) /
+        (dezimalRendite / 12));
 
   function handleChangeStartkapital(event) {
     setStartkapital(parseFloat(event.target.value));
@@ -67,8 +73,10 @@ function App() {
           <li>{`Startkapital: ${startkapital}€`}</li>
           <li>{`Summe monatliche Sparrate: ${summeMonatlicheSparrate}€`}</li>
           <li>{`Summe investiertes Kapital: ${summeInvestiertesKapital}€`}</li>
-          <li>Summe Rendite:</li>
-          <li>Gesamtkapital:</li>
+          <li>{`Summe Rendite: ${(
+            gesamtkapital - summeInvestiertesKapital
+          ).toFixed(2)}€`}</li>
+          <li>{`Gesamtkapital: ${gesamtkapital.toFixed(2)}€`}</li>
         </ul>
       </section>
       <section>
