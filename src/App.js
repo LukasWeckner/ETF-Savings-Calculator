@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [startkapital, setStartkapital] = useState(0);
-  const [sparrate, setSparrate] = useState(0);
-  const [anlagedauer, setAnlagedauer] = useState(0);
-  const [rendite, setRendite] = useState(0);
+  const [userInput, setUserInput] = useState({
+    startkapital: "",
+    sparrate: "",
+    anlagedauer: "",
+    rendite: "",
+  });
+  const [allInputsFilled, setAllInputsFilled] = useState(false);
+
+  const { startkapital, sparrate, anlagedauer, rendite } = userInput;
+
+  function checkAllInputsFilled() {
+    return (
+      startkapital !== "" &&
+      sparrate !== "" &&
+      anlagedauer !== "" &&
+      rendite !== ""
+    );
+  }
 
   const dezimalRendite = rendite / 100;
   const summeMonatlicheSparrate = sparrate * (anlagedauer * 12);
@@ -17,17 +31,37 @@ function App() {
         (dezimalRendite / 12));
 
   function handleChangeStartkapital(event) {
-    setStartkapital(parseFloat(event.target.value));
+    const value = event.target.value;
+    setUserInput({
+      ...userInput,
+      startkapital: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeSparrate(event) {
-    setSparrate(parseFloat(event.target.value));
+    const value = event.target.value;
+    setUserInput({
+      ...userInput,
+      sparrate: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeAnlagedauer(event) {
-    setAnlagedauer(parseFloat(event.target.value));
+    const value = event.target.value;
+    setUserInput({
+      ...userInput,
+      anlagedauer: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeRendite(event) {
-    setRendite(parseFloat(event.target.value));
+    const value = event.target.value;
+    setUserInput({
+      ...userInput,
+      rendite: value === "" ? "" : parseFloat(value),
+    });
   }
+
+  useEffect(() => {
+    setAllInputsFilled(checkAllInputsFilled);
+  }, [userInput]);
 
   return (
     <div className="App">
@@ -67,18 +101,21 @@ function App() {
         <h3 className="Top-Margin">Platzhalter-Diagramm</h3>
       </section>
 
-      <section>
-        <h2>Deine Ergebnisee:</h2>
-        <ul>
-          <li>{`Startkapital: ${startkapital}€`}</li>
-          <li>{`Summe monatliche Sparrate: ${summeMonatlicheSparrate}€`}</li>
-          <li>{`Summe investiertes Kapital: ${summeInvestiertesKapital}€`}</li>
-          <li>{`Summe Rendite: ${(
-            gesamtkapital - summeInvestiertesKapital
-          ).toFixed(2)}€`}</li>
-          <li>{`Gesamtkapital: ${gesamtkapital.toFixed(2)}€`}</li>
-        </ul>
-      </section>
+      {allInputsFilled ? (
+        <section>
+          <h2>Deine Ergebnisse:</h2>
+          <ul>
+            <li>{`Startkapital: ${startkapital}€`}</li>
+            <li>{`Summe monatliche Sparrate: ${summeMonatlicheSparrate}€`}</li>
+            <li>{`Summe investiertes Kapital: ${summeInvestiertesKapital}€`}</li>
+            <li>{`Summe Rendite: ${(
+              gesamtkapital - summeInvestiertesKapital
+            ).toFixed(2)}€`}</li>
+            <li>{`Gesamtkapital: ${gesamtkapital.toFixed(2)}€`}</li>
+          </ul>
+        </section>
+      ) : null}
+
       <section>
         <img
           alt="Grafik der Kapitalentwicklung über die Jahre"
