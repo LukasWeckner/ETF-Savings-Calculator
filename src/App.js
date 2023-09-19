@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [startkapital, setStartkapital] = useState("");
-  const [sparrate, setSparrate] = useState("");
-  const [anlagedauer, setAnlagedauer] = useState("");
-  const [rendite, setRendite] = useState("");
-
+  const [userInput, setUserInput] = useState({
+    startkapital: "",
+    sparrate: "",
+    anlagedauer: "",
+    rendite: "",
+  });
   const [allInputsFilled, setAllInputsFilled] = useState(false);
+
+  const { startkapital, sparrate, anlagedauer, rendite } = userInput;
 
   function checkAllInputsFilled() {
     return (
@@ -29,24 +32,36 @@ function App() {
 
   function handleChangeStartkapital(event) {
     const value = event.target.value;
-    setStartkapital(value === "" ? "" : parseFloat(value));
-    setAllInputsFilled(checkAllInputsFilled());
+    setUserInput({
+      ...userInput,
+      startkapital: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeSparrate(event) {
     const value = event.target.value;
-    setSparrate(value === "" ? "" : parseFloat(value));
-    setAllInputsFilled(checkAllInputsFilled());
+    setUserInput({
+      ...userInput,
+      sparrate: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeAnlagedauer(event) {
     const value = event.target.value;
-    setAnlagedauer(value === "" ? "" : parseFloat(value));
-    setAllInputsFilled(checkAllInputsFilled());
+    setUserInput({
+      ...userInput,
+      anlagedauer: value === "" ? "" : parseFloat(value),
+    });
   }
   function handleChangeRendite(event) {
     const value = event.target.value;
-    setRendite(value === "" ? "" : parseFloat(value));
-    setAllInputsFilled(checkAllInputsFilled());
+    setUserInput({
+      ...userInput,
+      rendite: value === "" ? "" : parseFloat(value),
+    });
   }
+
+  useEffect(() => {
+    setAllInputsFilled(checkAllInputsFilled);
+  }, [userInput]);
 
   return (
     <div className="App">
