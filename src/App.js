@@ -30,7 +30,6 @@ function App() {
       <h1>ETF Sparplanrechner</h1>
       <FinancialDataForm userInput={userInput} setUserInput={setUserInput} />
       {allInputsFilled ? <UserResults userInput={userInput} /> : null}
-
       <CapitalDiagram />
     </div>
   );
