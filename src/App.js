@@ -13,14 +13,12 @@ function App() {
   });
   const [allInputsFilled, setAllInputsFilled] = useState(false);
 
-  const { startkapital, sparrate, anlagedauer, rendite } = userInput;
-
   function checkAllInputsFilled() {
     return (
-      startkapital !== "" &&
-      sparrate !== "" &&
-      anlagedauer !== "" &&
-      rendite !== ""
+      userInput.startkapital !== "" &&
+      userInput.sparrate !== "" &&
+      userInput.anlagedauer !== "" &&
+      userInput.rendite !== ""
     );
   }
   useEffect(() => {
