@@ -23,6 +23,7 @@ function App() {
   }
   useEffect(() => {
     setAllInputsFilled(checkAllInputsFilled);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInput]);
 
   return (
