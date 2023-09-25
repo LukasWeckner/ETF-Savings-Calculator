@@ -1,0 +1,10 @@
+.form__grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1%;
+  row-gap: 30%;
+}
+
+.form__grid-item_justify-right {
+  justify-self: end;
+}
