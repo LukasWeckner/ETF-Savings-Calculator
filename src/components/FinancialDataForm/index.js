@@ -1,3 +1,5 @@
+import "./styles.css";
+
 function FinancialDataForm({ userInput, setUserInput }) {
   function handleChangeStartkapital(event) {
     const value = event.target.value;
@@ -31,36 +33,46 @@ function FinancialDataForm({ userInput, setUserInput }) {
   return (
     <section>
       <h2>Deine Angaben</h2>
-      <form>
-        <label htmlFor="startkapital">Startkapital</label>
-        <input
-          id="startkapital"
-          type="number"
-          name="startkapital"
-          onChange={handleChangeStartkapital}
-        ></input>
-        <label htmlFor="sparrate">Sparrate</label>
-        <input
-          id="sparrate"
-          type="number"
-          name="sparrate"
-          onChange={handleChangeSparrate}
-        ></input>
-        <label htmlFor="anlagedauer">Anlagedauer</label>
-        <input
-          id="anlagedauer"
-          type="number"
-          name="anlagedauer"
-          onChange={handleChangeAnlagedauer}
-        ></input>
-        <label htmlFor="rendite">Jährliche Rendite</label>
-        <input
-          id="rendite"
-          type="number"
-          name="rendite"
-          onChange={handleChangeRendite}
-        ></input>
-      </form>
+      <div className="form-wrapper">
+        <form className="form__grid-container">
+          <label className="form__grid-item" htmlFor="startkapital">
+            Startkapital:
+          </label>
+          <input
+            id="startkapital"
+            type="number"
+            name="startkapital"
+            onChange={handleChangeStartkapital}
+          ></input>
+          <label className="form__grid-item" htmlFor="sparrate">
+            Sparrate:
+          </label>
+          <input
+            id="sparrate"
+            type="number"
+            name="sparrate"
+            onChange={handleChangeSparrate}
+          ></input>
+          <label className="form__grid-item" htmlFor="anlagedauer">
+            Anlagedauer:
+          </label>
+          <input
+            id="anlagedauer"
+            type="number"
+            name="anlagedauer"
+            onChange={handleChangeAnlagedauer}
+          ></input>
+          <label className="form__grid-item" htmlFor="rendite">
+            Jährliche Rendite:
+          </label>
+          <input
+            id="rendite"
+            type="number"
+            name="rendite"
+            onChange={handleChangeRendite}
+          ></input>
+        </form>
+      </div>
     </section>
   );
 }

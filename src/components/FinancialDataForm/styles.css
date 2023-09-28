@@ -1,0 +1,16 @@
+.form-wrapper {
+  border: 0.5px solid grey;
+  padding: 10px;
+}
+
+.form__grid-container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 5px;
+  width: 60%;
+}
+
+.form__grid-item {
+  text-align: left;
+}
