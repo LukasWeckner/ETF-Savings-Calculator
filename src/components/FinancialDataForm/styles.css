@@ -1,10 +1,16 @@
-.form__grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 1%;
-  row-gap: 30%;
+.form-wrapper {
+  border: 0.5px solid grey;
+  padding: 10px;
 }
 
-.form__grid-item_justify-right {
-  justify-self: end;
+.form__grid-container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 5px;
+  width: 60%;
+}
+
+.form__grid-item {
+  text-align: left;
 }

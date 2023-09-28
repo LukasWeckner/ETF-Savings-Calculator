@@ -2,10 +2,10 @@ function CapitalDiagram() {
   return (
     <section>
       <h2 className="Top-Margin">Platzhalter-Diagramm</h2>
-      <img
+      {/* <img
         alt="Grafik der Kapitalentwicklung über die Jahre"
         src="./images/platzhalter.png"
-      />
+      /> */}
     </section>
   );
 }
